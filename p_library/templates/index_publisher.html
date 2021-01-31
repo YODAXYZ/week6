@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+    {% for pub in pubs %}
+        <ul class="list-group">
+            <li class="list-group-item">
+                {{ pub.name }}
+                <ul class="list-group">
+                    {% for book in pub.books.all %}
+                        <li class="list-group-item"> {{ book.title }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    {% endfor %}
+{% endblock %}
+</body>
+</html>

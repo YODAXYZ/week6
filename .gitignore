@@ -1,0 +1,7 @@
+.idea/
+db.sqlite3
+data.xml
+img/
+media/
+__pycache__/
+
