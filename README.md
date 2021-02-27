@@ -6,7 +6,7 @@ Go to some directore cd ...
   'git clone https://github.com/YODAXYZ/week6.git'
   Clone project
 
-pyton3 -m env myenv
+`pyton3 -m env myenv`
     create virtual env
     
 source myenv/bin/activate
