@@ -1,7 +1,6 @@
 This project about library site for deploying a project you need do this steps:
 
 Go to some directore cd ...
-
   git init 
 
   git clone https://github.com/YODAXYZ/week6.git
