@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_ul }}
+        <input type="submit" value="Войти">
+    </form>
+    <h5><a href="{% url 'p_library:register' %}">Register</a></h5>
+    <h5>Log in with <a href="{% url 'login_github' %}">github</h5>
+
+{% endblock %}

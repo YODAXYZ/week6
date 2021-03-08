@@ -1,10 +1,13 @@
+from allauth.socialaccount.models import SocialAccount
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from p_library.models import Book, Author, Publisher, Friend
 from django.template import loader
 from p_library.forms import AuthorForm
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, FormView
 from django.urls import reverse_lazy
 from django.forms import formset_factory
 from django.http.response import HttpResponseRedirect
@@ -17,9 +20,28 @@ class AuthorEdit(CreateView):
     template_name = 'author_edit.html'
 
 
+class RegisterView(FormView):
+    form_class = UserCreationForm
+
+    def form_valid(self, form):
+        form.save()
+        username = form.cleaned_data.get('username')
+        raw_password = form.cleaned_data.get('password1')
+        login(self.request, authenticate(username=username, password=raw_password))
+        return super(RegisterView, self).form_valid(form)
+
+
 class AuthorList(ListView):
     model = Author
     template_name = 'authors_list.html'
+
+
+def my_blog(request):
+    if request.user.is_authenticated:
+        template = loader.get_template('my_blog.html')
+        context = dict()
+        return HttpResponse(template.render(context))
+    return HttpResponseRedirect(reverse_lazy('login'))
 
 
 def index(request):

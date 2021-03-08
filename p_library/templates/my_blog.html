@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Добро пожаловать !!!</h1>
+    {% if github_url %}
+        Я знаю твой профиль на <a href="{{ github_url }}">github</a>!
+    {% endif %}
+{% endblock %}
